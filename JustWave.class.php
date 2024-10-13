@@ -16,6 +16,7 @@ class JustWave
 	const CACHE_FILENAME = 'justwave.sqlite3'; // path for sqlite3 database file
 	// path to ffmpeg binary, rename it to 'avconv' if your system has it instead
 	const FFMPEG_PATH = 'ffmpeg';
+	const ACCURACY = 100 ;
 
 	/**
 		Input variables for creating and managing waves 
@@ -177,7 +178,7 @@ class JustWave
 	*/
 	private function createWaves($wavfilename)
 	{
-		define('ACCURACY', 100); // default optimal accuracy
+		//define('ACCURACY', 100); // default optimal accuracy
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
     // Create palette based image
 		// if background == '' we convert it to true color image later then
@@ -247,10 +248,10 @@ class JustWave
 			return false;
 		}
 
-    if ($file_chunks < $this->width * ACCURACY)
+    if ($file_chunks < $this->width * JustWave::ACCURACY)
 			$accuracy = 1;
 		else
-			$accuracy = ACCURACY;
+			$accuracy = JustWave::ACCURACY;
 			
     $point_chunks = $file_chunks / ($this->width);
     $block_chunks = $file_chunks / ($this->width * $accuracy);
